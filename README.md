@@ -22,6 +22,8 @@
 - You should not be able to access other routes without login
 - if token is not present, redirect user to the login page
 - Logout Feature
+- Get the feed and add the feed in the redux store
+- build the UserCard on feed
 
 
 
