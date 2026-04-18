@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const UserCard = ({user}) => {
     const{firstName, lastName, about, gender, age, photoUrl} = user;
@@ -11,9 +11,10 @@ const UserCard = ({user}) => {
             alt="user photo" />
         </figure>
         <div className="card-body">
-            <h2 className="card-title">{firstName + " " + lastName}</h2>
+            <h2 className="card-title text-3xl">{firstName + " " + lastName}</h2>
+            
+            {age && gender && <p className='font-bold'>{age +", " + gender}</p>}
             <p>{about}</p>
-            {age &&gender && <p>{age +", " + gender}</p>}
 
             <div className="card-actions justify-center my-1">
             <button className="btn btn-secondary">Ignore</button>

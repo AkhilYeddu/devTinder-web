@@ -24,6 +24,10 @@
 - Logout Feature
 - Get the feed and add the feed in the redux store
 - build the UserCard on feed
+- edit profile feature
+- show toast message on save of profile
+- See all my connections
+
 
 
 
