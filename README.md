@@ -28,6 +28,13 @@
 - show toast message on save of profile
 - New Page - See all my connections
 - New Page - see all my connection requests
+- Feature = Accept/ Reject connection request
+
+Remaining:
+- Send ignore/interested to the usercard from the feed
+- Signup new user
+- E2E Testing
+
 
 
 

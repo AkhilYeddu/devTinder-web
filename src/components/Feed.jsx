@@ -8,6 +8,7 @@ import UserCard from './UserCard';
 const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store)=>store.feed);
+  
   const fetchFeed = async() =>{
     try{
       const res = await axios.get(BASE_URL+"/user/feed",{
@@ -29,7 +30,10 @@ const Feed = () => {
   useEffect(()=>{
       fetchFeed(); 
   },[])
-    
+
+  if(!feed) return
+  if(feed.length === 0) return <div>No users</div>
+  
   return (
     <div>
       {feed &&(
