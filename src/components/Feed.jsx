@@ -8,6 +8,8 @@ import UserCard from './UserCard';
 const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store)=>store.feed);
+
+ 
   
   const fetchFeed = async() =>{
     try{
@@ -32,7 +34,7 @@ const Feed = () => {
   },[])
 
   if(!feed) return
-  if(feed.length === 0) return <div>No users</div>
+  if(feed.length === 0) return <div className='flex justify-center text-3xl text-white font-bold'>No users</div>
   
   return (
     <div>
