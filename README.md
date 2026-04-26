@@ -46,3 +46,61 @@ Body
         Route= /login >login
         Route= /profile >profile
     Footer
+
+
+# Deployment
+- Signup in AWS
+- Launch an instance
+- chmod 400 <secret>.pem (in mac os)
+- connect to the instance = ssh -i "devTinder-secret.pem" ubuntu@ec2-44-201-70-144.compute-1.amazonaws.com
+- Git clone for devTinder and devTinder-web
+- Front-end
+    - npm install -> installing dependencies
+    - npm run build (building our project using vite bundler)
+    - sudo apt update (to update the system)
+    - sudo apt install nginx (gives us a http server)
+    - sudo systemctl start nginx
+    - sudo systemctl enable nginx
+    - copy code from dist(built files) to /var/www/html (nginx https server)
+    - sudo scp -r dist/* /var/www/html
+
+- Back-end
+    - allowed ec2 instance public IP on mongodb (whitelisting the ec2 IP on mongodb)
+    - npm install pm2 -g
+    - pm2 start npm -- start
+    - pm2 logs
+    - pm2 flush <name> (clears the logs)
+    - pm2 list
+    - pm2 stop <name>
+    - pm2 delete <name>
+    - pm2 start npm --name "devTinder-backend" -- start (to change the name of our process)
+    - config nginx (edit the default config) = sudo nano /etc/nginx/sites-available/default
+    - restart nginx (sudo systemctl restart nginx)
+    - modify the BASE_URL in front-end project to /api
+
+    front-end = http://98.82.123.152/
+    back-end = http://98.82.123.152:3000/
+
+    domain name = devtinder.com => http://98.82.123.152/
+
+    front-end = devtinder.com
+    back-end = devtinder.com:3000 => devtinder.com/api
+
+    nginx config: 
+
+    server_name 98.82.123.152;
+
+     location /api/ {
+        proxy_pass http://98.82.123.152:3000/;
+        proxy_http_version 1.1;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+
+
+
