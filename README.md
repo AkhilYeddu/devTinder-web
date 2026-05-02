@@ -52,7 +52,7 @@ Body
 - Signup in AWS
 - Launch an instance
 - chmod 400 <secret>.pem (in mac os)
-- connect to the instance = ssh -i "devTinder-secret.pem" ubuntu@ec2-44-201-70-144.compute-1.amazonaws.com
+- connect to the instance = ssh -i "devTinder-secret.pem" ubuntu@ec2-98-82-123-152.compute-1.amazonaws.com
 - Git clone for devTinder and devTinder-web
 - Front-end
     - npm install -> installing dependencies
@@ -101,6 +101,29 @@ Body
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
     }
+
+# Adding a custom domain name
+    - purchased domain name from goDaddy
+    - signup on cloudflare and add a new domain name
+    - change the namesevers and point it to cloudflare
+    - wait for sometime till your nameservers are updated ~ 15 minutes
+    - DNS Record : "A" Record devtiner.online 98.82.123.152
+    - Enable SSL for your website
+
+# Sending emails through SES
+    - create an IAM user
+    - give access to AmazonSESFULLACCESS
+    - Amazon SES : Create an identity
+    - Verify your domain name
+    - Verify your email address
+    - Install AWS SDK -v3
+    - Code example = https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples
+    - setup SES Client
+    - Access crendentials, should be created in IAM under Security credentials Tab
+    - Add the credentials to the env file
+    - write code for SES client
+    - write code for sending Email address
+    - make the email dynamic by passing more params to the run function
 
 
 

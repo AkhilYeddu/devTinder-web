@@ -18,6 +18,7 @@ const Feed = () => {
     });
 
     dispatch(addFeed(res.data));
+    console.log(res);
     
 
     }catch(err){
