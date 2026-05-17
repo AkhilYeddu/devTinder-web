@@ -1,7 +1,42 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../utils/constants'
 const Premium = () => {
+    const [isUserPremium, setIsUserPremium] = useState(false);
+    const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
+
+    useEffect(()=>{
+        verifyUserPremium();}
+    ,[])
+
+    if (isPaymentProcessing) {
+   return (
+      <div className="flex justify-center items-center h-screen">
+         <span className="loading loading-spinner loading-lg"></span>
+      </div>
+   );
+}
+
+    const verifyUserPremium= async()=>{
+        try{
+
+            const res = await axios.get(BASE_URL + "/premium/verify",{
+            withCredentials : true
+        })
+
+        if(res.data.isPremium){
+            setIsUserPremium(true);
+        }
+
+
+        }catch(err){
+            console.log(err)
+        }
+        
+        
+
+    }
+
     const handleBuyClick = async(type) =>{
         try{
             const order= await axios.post(BASE_URL+"/payment/create", 
@@ -30,6 +65,15 @@ const Premium = () => {
                 theme: {
                 color: '#F37254'
                 },
+                handler: async function () {
+                    setIsPaymentProcessing(true);
+                    setTimeout(async () => {
+
+                await verifyUserPremium();
+                setIsPaymentProcessing(false);
+                }, 3000);
+
+            }
             };
             const rzp = new window.Razorpay(options);
             rzp.open();
@@ -40,7 +84,7 @@ const Premium = () => {
         }
         
     }
-  return (
+  return !isUserPremium ? (
     <div className="flex gap-10 justify-center items-center m-10">
         
                 <div className="card w-96 bg-base-300 shadow-sm">
@@ -106,7 +150,7 @@ const Premium = () => {
         </div>
 
     </div>
-  )
+  ) : <div className=' mt-5 text-3xl text-white font-bold text-center'>You are already a premium user!</div>
 }
 
 export default Premium
