@@ -2,4 +2,4 @@
 export const BASE_URL =
   location.hostname === "localhost"
     ? "http://localhost:3000"
-    : import.meta.env.VITE_BACKEND_URL || "https://your-app.onrender.com";
+    : import.meta.env.VITE_BACKEND_URL
