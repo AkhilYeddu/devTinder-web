@@ -150,6 +150,12 @@ Body
 - made the payment API dynamic
 - setup razorpay webhook on your live API
 
+# Realtime Chat using Websocket (socket.io)
+- Build the UI for a chat window on /chat/:targetUserId
+- Setup socket.io in backend
+- npm install socket.io
+
+
 
 
 
