@@ -6,8 +6,8 @@ const Premium = () => {
     const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
 
     useEffect(()=>{
-        verifyUserPremium();}
-    ,[])
+        verifyUserPremium();
+    },[])
 
     if (isPaymentProcessing) {
    return (
@@ -27,14 +27,12 @@ const Premium = () => {
         if(res.data.isPremium){
             setIsUserPremium(true);
         }
-
+        console.log(isUserPremium)
 
         }catch(err){
             console.log(err)
         }
         
-        
-
     }
 
     const handleBuyClick = async(type) =>{

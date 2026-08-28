@@ -28,7 +28,7 @@ const UserCard = ({user}) => {
         <div className="card-body">
             <h2 className="card-title text-3xl">{firstName + " " + lastName}</h2>
             
-            {age && gender && <p className='font-bold'>{age +", " + gender}</p>}
+            {(age || gender) && <p className='font-bold'>{[age, gender].filter(Boolean).join(", ")}</p>}
             <p>{about}</p>
 
             <div className="card-actions justify-center my-1">

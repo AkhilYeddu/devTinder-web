@@ -57,7 +57,7 @@ const Requests = () => {
                                 </div>
 
                                 <div className='text-left mx-4 '> <h2 className='font-bold text-xl'> {firstName + " " + lastName}  </h2>
-                                {age && gender && <p className='font-semibold'> {age +", " + gender}</p>}
+                                {(age || gender) && <p className='font-semibold'> {[age, gender].filter(Boolean).join(", ")}</p>}
                                 <p> {about}</p>
                                 </div>
                             

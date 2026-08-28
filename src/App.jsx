@@ -20,14 +20,13 @@ function App() {
           <Route path="/" element = {<Body/>} >    {/* parent */}
 
           
-          <Route path="/" element = {<Feed/>}>  </Route>
-          <Route path="/login" element={<Login/>}>  </Route>       {/* Child */}
-          <Route path="/profile" element={<Profile/>}>  </Route> {/* Child */}
-          <Route path="/connections" element = {<Connections/>}></Route>
-          <Route path ="/requests" element = {<Requests/>}></Route>
-          <Route path ="/premium" element = {<Premium/>}></Route>
-          <Route path = "/chat/:targetUserId" element = {<Chat/>}></Route>
-
+            <Route path="/" element = {<Feed/>}>  </Route>
+            <Route path="/login" element={<Login/>}>  </Route>       {/* Child */}
+            <Route path="/profile" element={<Profile/>}>  </Route> {/* Child */}
+            <Route path="/connections" element = {<Connections/>}></Route>
+            <Route path ="/requests" element = {<Requests/>}></Route>
+            <Route path ="/premium" element = {<Premium/>}></Route>
+            <Route path = "/chat/:targetUserId" element = {<Chat/>}></Route>
           </Route>
 
         </Routes>

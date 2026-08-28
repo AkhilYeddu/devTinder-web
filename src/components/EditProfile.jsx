@@ -23,14 +23,16 @@ const EditProfile = ({user}) => {
     const [error, setError] = useState("");
 
     const saveProfile = async()=>{
+      console.log("edit profile API is being hit");
       // Clear errors
       setError("")
         try{
+          console.log("inside try block of frontend")
         
 
           const res = await axios.patch(BASE_URL + "/profile/edit",{
             firstName,
-            lastName,
+            lastName,  
             photoUrl,
             age,
             gender,
@@ -38,7 +40,7 @@ const EditProfile = ({user}) => {
           },{
           withCredentials : true
           });
-
+          
           dispatch(addUser(res?.data?.data));
           setShowToast(true)
           setTimeout(() => {
@@ -84,6 +86,7 @@ const EditProfile = ({user}) => {
                 <input type="text"  value= {age} onChange={(event)=>setAge(event.target.value)} className="input"/>
                 </fieldset>
          </div>
+
          <div>
                 <fieldset className="fieldset">
                 <legend className="fieldset-legend">Gender : </legend>
